@@ -1,142 +1,745 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo Oficial</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<title>Catálogo Oficial</title>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fc;
+      color: #0f172a;
+      line-height: 1.6;
+    }
 
-<style>
+    a { text-decoration: none; }
 
-body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(135deg,#0d6efd,#3fa3ff);
-color:white;
-}
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
 
-.container{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:80px;
-}
+    .hero {
+      background: linear-gradient(135deg, #2563eb, #4f46e5 55%, #7c3aed);
+      color: white;
+      padding: 28px 0 90px;
+      overflow: hidden;
+      position: relative;
+    }
 
-.text{
-max-width:600px;
-}
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 42px;
+    }
 
-.text h1{
-font-size:50px;
-line-height:1.2;
-}
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+    }
 
-.text p{
-opacity:.9;
-}
+    .nav-right {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-.buttons{
-margin-top:20px;
-}
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
 
-.buttons a{
-padding:12px 20px;
-background:white;
-color:#0d6efd;
-border-radius:10px;
-margin-right:10px;
-text-decoration:none;
-font-weight:bold;
-}
+    .btn:hover { transform: translateY(-1px); }
 
-.phone-wrap{
-display:flex;
-justify-content:center;
-}
+    .btn-white {
+      background: white;
+      color: #2563eb;
+    }
 
-.iphone{
-width:320px;
-background:#111827;
-border-radius:40px;
-padding:12px;
-box-shadow:0 20px 60px rgba(0,0,0,.5);
-}
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.35);
+      color: white;
+    }
 
-.phone-screen{
-background:black;
-border-radius:30px;
-overflow:hidden;
-height:620px;
-position:relative;
-}
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 34px;
+      align-items: center;
+    }
 
-.phone-screen img{
-width:100%;
-position:absolute;
-animation:slide 24s infinite;
-}
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.16);
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
 
-.phone-screen img:nth-child(2){animation-delay:4s;}
-.phone-screen img:nth-child(3){animation-delay:8s;}
-.phone-screen img:nth-child(4){animation-delay:12s;}
-.phone-screen img:nth-child(5){animation-delay:16s;}
-.phone-screen img:nth-child(6){animation-delay:20s;}
+    h1 {
+      font-size: 58px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
 
-@keyframes slide{
+    .hero p {
+      font-size: 20px;
+      color: rgba(255,255,255,.92);
+      max-width: 650px;
+    }
 
-0%{opacity:0;}
-5%{opacity:1;}
-20%{opacity:1;}
-25%{opacity:0;}
-100%{opacity:0;}
+    .rating-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 24px 0;
+      align-items: center;
+    }
 
-}
+    .stars {
+      color: #facc15;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
 
-</style>
+    .pill {
+      background: rgba(255,255,255,.14);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tags span {
+      background: rgba(255,255,255,.13);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .iphone {
+      width: 330px;
+      background: #0f172a;
+      border-radius: 42px;
+      padding: 12px;
+      box-shadow: 0 30px 70px rgba(0,0,0,.30);
+      position: relative;
+      transform: rotate(-3deg);
+    }
+
+    .iphone::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 22px;
+      background: #020617;
+      border-radius: 0 0 18px 18px;
+      z-index: 3;
+    }
+
+    .iphone-screen {
+      background: #fff;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9/19.5;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .slides {
+      display: flex;
+      width: 600%;
+      height: 100%;
+      animation: slideShow 24s infinite;
+    }
+
+    .slide {
+      width: 16.6667%;
+      flex-shrink: 0;
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes slideShow {
+      0%, 12% { transform: translateX(0%); }
+      16%, 28% { transform: translateX(-16.6667%); }
+      32%, 44% { transform: translateX(-33.3334%); }
+      48%, 60% { transform: translateX(-50.0001%); }
+      64%, 76% { transform: translateX(-66.6668%); }
+      80%, 100% { transform: translateX(-83.3335%); }
+    }
+
+    .phone-label {
+      text-align: center;
+      color: white;
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: .92;
+    }
+
+    .stats-strip {
+      margin-top: -34px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 12px 32px rgba(15,23,42,.08);
+      border: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .stat-card h3 {
+      font-size: 34px;
+      color: #2563eb;
+      margin-bottom: 6px;
+    }
+
+    .stat-card p {
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 42px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #64748b;
+      font-size: 19px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15,23,42,.04);
+    }
+
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: #dbeafe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: #64748b;
+    }
+
+    .reviews-box {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      background: linear-gradient(135deg, #fff7ed, #ffffff);
+      border: 1px solid #fed7aa;
+      border-radius: 28px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .reviews-big-stars {
+      color: #f59e0b;
+      font-size: 30px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .reviews-score {
+      font-size: 46px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .reviews-sub {
+      color: #64748b;
+      font-size: 18px;
+    }
+
+    .gallery {
+      background: #eef4ff;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(15,23,42,.06);
+      border: 1px solid #e2e8f0;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-card p {
+      padding: 14px 16px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .pricing-wrap {
+      max-width: 620px;
+      margin: auto;
+      background: white;
+      border-radius: 30px;
+      border: 2px solid #bfdbfe;
+      box-shadow: 0 18px 46px rgba(15,23,42,.08);
+      overflow: hidden;
+    }
+
+    .pricing-head {
+      background: #2563eb;
+      color: white;
+      text-align: center;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .pricing-body {
+      padding: 34px 26px;
+      text-align: center;
+    }
+
+    .price-note {
+      color: #64748b;
+      font-size: 16px;
+    }
+
+    .price {
+      font-size: 60px;
+      font-weight: 800;
+      margin: 12px 0;
+    }
+
+    .free-box {
+      margin: 20px 0;
+      padding: 14px;
+      border-radius: 18px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #15803d;
+      font-weight: 700;
+    }
+
+    .pricing-list {
+      text-align: left;
+      max-width: 390px;
+      margin: 24px auto;
+    }
+
+    .pricing-list div {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2563eb;
+      flex-shrink: 0;
+    }
+
+    .cta {
+      background: #0f172a;
+      color: white;
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .cta h2 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: rgba(255,255,255,.78);
+      font-size: 18px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-dark-light {
+      background: white;
+      color: #0f172a;
+    }
+
+    .btn-dark-outline {
+      color: white;
+      border: 1px solid rgba(255,255,255,.24);
+    }
+
+    footer {
+      background: #020617;
+      color: #94a3b8;
+      text-align: center;
+      padding: 24px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1000px) {
+      .hero-grid,
+      .stats-grid,
+      .features-grid,
+      .gallery-grid,
+      .cta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 { font-size: 40px; }
+      .section-title h2,
+      .cta h2 { font-size: 30px; }
+      .price { font-size: 46px; }
+      .iphone { width: 290px; transform: rotate(0deg); }
+      .gallery-card img { height: auto; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+  <section class="hero">
+    <div class="container">
+      <div class="nav">
+        <div class="logo">Catálogo Oficial</div>
+        <div class="nav-right">
+          <a href="#recursos" class="btn btn-outline">Recursos</a>
+          <a href="https://wa.me/5541997962177?text=Quero%20criar%20minha%20loja%20no%20Catálogo%20Oficial" class="btn btn-white">Começar grátis</a>
+        </div>
+      </div>
 
-<div class="text">
+      <div class="hero-grid">
+        <div>
+          <div class="badge">Teste grátis por 15 dias</div>
+          <h1>Crie sua loja online e receba pedidos no WhatsApp</h1>
+          <p>
+            O Catálogo Oficial ajuda lojistas a vender produtos, aceitar PIX, compartilhar catálogo,
+            receber pedidos, mostrar vídeos da loja e gerenciar vendedores, afiliados e anúncios.
+          </p>
 
-<h1>Crie sua loja online e receba pedidos no WhatsApp</h1>
+          <div class="rating-row">
+            <div class="stars">★★★★★</div>
+            <div class="pill">4.8 de avaliação</div>
+            <div class="pill">19.4k avaliações</div>
+          </div>
 
-<p>
-O Catálogo Oficial ajuda lojistas a vender produtos,
-aceitar PIX, compartilhar catálogo e receber pedidos.
-</p>
+          <div class="hero-actions">
+            <a href="https://wa.me/5541997962177?text=Quero%20criar%20minha%20loja%20no%20Catálogo%20Oficial" class="btn btn-white">Começar grátis</a>
+            <a href="#recursos" class="btn btn-outline">Ver recursos</a>
+          </div>
 
-<div class="buttons">
+          <div class="tags">
+            <span>Catálogo digital</span>
+            <span>Pedidos no WhatsApp</span>
+            <span>PIX automático</span>
+            <span>R$19,90/mês</span>
+            <span>Vendedores</span>
+            <span>Afiliados</span>
+          </div>
+        </div>
 
-<a href="#">Começar grátis</a>
-<a href="#">Ver recursos</a>
+        <div class="phone-wrap">
+          <div>
+            <div class="iphone">
+              <div class="iphone-screen">
+                <div class="slider">
+                  <div class="slides">
+                    <div class="slide"><img src="app1.jpg" alt="Tela 1"></div>
+                    <div class="slide"><img src="app2.jpg" alt="Tela 2"></div>
+                    <div class="slide"><img src="app3.jpg" alt="Tela 3"></div>
+                    <div class="slide"><img src="app4.jpg" alt="Tela 4"></div>
+                    <div class="slide"><img src="app5.jpg" alt="Tela 5"></div>
+                    <div class="slide"><img src="app6.jpg" alt="Tela 6"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="phone-label">Veja o aplicativo funcionando por dentro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</div>
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>490</h3>
+          <p>Visualizações</p>
+        </div>
+        <div class="stat-card">
+          <h3>200</h3>
+          <p>Visitantes únicos</p>
+        </div>
+        <div class="stat-card">
+          <h3>39</h3>
+          <p>Pedidos</p>
+        </div>
+        <div class="stat-card">
+          <h3>R$ 8.958</h3>
+          <p>Faturamento</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</div>
+  <section id="recursos">
+    <div class="container">
+      <div class="section-title">
+        <h2>Tudo o que o lojista precisa para vender mais</h2>
+        <p>
+          Sua plataforma já reúne catálogo, pedidos, histórico, vídeos, links sociais,
+          painel de controle e ferramentas para crescer a loja.
+        </p>
+      </div>
 
-<div class="phone-wrap">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>Catálogo digital</h3>
+          <p>Adicione produtos, fotos, categorias, descrições e controle de visibilidade.</p>
+        </div>
 
-<div class="iphone">
+        <div class="feature-card">
+          <div class="feature-icon">📲</div>
+          <h3>Pedidos no WhatsApp</h3>
+          <p>Receba pedidos direto no WhatsApp e acompanhe tudo no histórico.</p>
+        </div>
 
-<div class="phone-screen">
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>PIX automático</h3>
+          <p>Receba pagamentos com PIX e acompanhe pedidos pagos com mais facilidade.</p>
+        </div>
 
-<img src="app1.jpg">
-<img src="app2.jpg">
-<img src="app3.jpg">
-<img src="app4.jpg">
-<img src="app5.jpg">
-<img src="app6.jpg">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Dashboard e histórico</h3>
+          <p>Veja visualizações, visitantes, pedidos, faturamento e histórico completo.</p>
+        </div>
 
-</div>
+        <div class="feature-card">
+          <div class="feature-icon">🎥</div>
+          <h3>YouTube e redes sociais</h3>
+          <p>Mostre vídeos da loja, Instagram, grupo do WhatsApp e aumente confiança.</p>
+        </div>
 
-</div>
+        <div class="feature-card">
+          <div class="feature-icon">🧾</div>
+          <h3>QR Code e PDF</h3>
+          <p>Compartilhe sua loja com QR Code e exporte seu catálogo em PDF.</p>
+        </div>
 
-</div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Vendedores</h3>
+          <p>Gerencie vendedores, links exclusivos e acompanhe vendas de cada um.</p>
+        </div>
 
-</div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Gestão de Afiliados</h3>
+          <p>Crie sistema de indicação, códigos e comissões para ampliar as vendas.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎬</div>
+          <h3>Ad Studio e banners</h3>
+          <p>Crie anúncios, banners promocionais, roteiros e materiais de divulgação.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="container">
+      <div class="section-title">
+        <h2>Veja telas reais do aplicativo</h2>
+        <p>Catálogo, pedidos, histórico, redes sociais, vídeos, vendedores e afiliados em um só lugar.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="app1.jpg" alt="Catálogo">
+          <p>Catálogo de produtos</p>
+        </div>
+        <div class="gallery-card">
+          <img src="app4.jpg" alt="Pedidos">
+          <p>Histórico e pedidos</p>
+        </div>
+        <div class="gallery-card">
+          <img src="app5.jpg" alt="Loja">
+          <p>Perfil da loja e avaliações</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2>Lojistas aprovam o Catálogo Oficial</h2>
+        <p>Uma plataforma feita para vender mais e organizar melhor a loja.</p>
+      </div>
+
+      <div class="reviews-box">
+        <div class="reviews-big-stars">★★★★★</div>
+        <div class="reviews-score">4.8</div>
+        <div class="reviews-sub">Baseado em 19.4k avaliações</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2>Preço simples para começar</h2>
+        <p>Teste grátis por 15 dias e depois continue com um valor acessível para sua loja.</p>
+      </div>
+
+      <div class="pricing-wrap">
+        <div class="pricing-head">Plano PRO</div>
+        <div class="pricing-body">
+          <div class="price-note">Depois do teste grátis</div>
+          <div class="price">R$19,90</div>
+          <div class="price-note">por mês</div>
+
+          <div class="free-box">15 dias grátis para novos lojistas</div>
+
+          <div class="pricing-list">
+            <div><span class="dot"></span><span>Loja online com link próprio</span></div>
+            <div><span class="dot"></span><span>Produtos e categorias ilimitados</span></div>
+            <div><span class="dot"></span><span>Pedidos pelo WhatsApp</span></div>
+            <div><span class="dot"></span><span>Dashboard, histórico e estatísticas</span></div>
+            <div><span class="dot"></span><span>Vendedores, afiliados e anúncios</span></div>
+            <div><span class="dot"></span><span>PIX, QR Code, PDF, Instagram e YouTube</span></div>
+          </div>
+
+          <a href="https://wa.me/5541997962177?text=Quero%20começar%20meu%20teste%20grátis%20no%20Catálogo%20Oficial" class="btn" style="background:#2563eb;color:white;">Começar meu teste grátis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container cta-grid">
+      <div>
+        <h2>Transforme seu celular em uma loja online completa</h2>
+        <p>
+          Crie sua loja، انشر المنتجات، شاركها مع العملاء، واستقبل الطلبات بسهولة من مكان واحد.
+        </p>
+      </div>
+
+      <div class="cta-actions">
+        <a href="https://wa.me/5541997962177" class="btn btn-dark-light">Falar no WhatsApp</a>
+        <a href="#recursos" class="btn btn-dark-outline">Ver recursos</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © Catálogo Oficial - Todos os direitos reservados
+  </footer>
 
 </body>
 </html>
