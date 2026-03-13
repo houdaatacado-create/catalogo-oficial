@@ -1,428 +1,1269 @@
 <!DOCTYPE html>
-<html lang="pt" dir="ltr">
-
+<html lang="pt-BR" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo Oficial</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fc;
+      color: #0f172a;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-<title>Catálogo Oficial</title>
+    a { text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1180px, 92%); margin: auto; }
 
-<style>
+    .hero {
+      background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+      color: #fff;
+      padding: 26px 0 92px;
+      position: relative;
+      overflow: hidden;
+    }
 
-*{
-box-sizing:border-box;
-margin:0;
-padding:0
-}
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      top: -180px;
+      right: -120px;
+      filter: blur(10px);
+    }
 
-body{
-font-family:Arial;
-background:#f6f8fc;
-color:#0f172a;
-line-height:1.6
-}
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 440px;
+      height: 440px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      bottom: -220px;
+      left: -120px;
+      filter: blur(10px);
+    }
 
-.container{
-width:min(1180px,92%);
-margin:auto
-}
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 42px;
+      position: relative;
+      z-index: 2;
+    }
 
-.hero{
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-color:#fff;
-padding:40px 0 90px
-}
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
 
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:40px
-}
+    .nav-right {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-.logo{
-font-size:28px;
-font-weight:800
-}
+    .lang-switch {
+      display: flex;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      overflow: hidden;
+    }
 
-.lang-switch button{
-border:none;
-padding:8px 12px;
-margin-left:6px;
-cursor:pointer;
-border-radius:8px
-}
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      color: #fff;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
 
-.lang-switch button.active{
-background:#fff;
-color:#2563eb;
-font-weight:bold
-}
+    .lang-switch button.active {
+      background: #fff;
+      color: #2563eb;
+    }
 
-.hero-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center
-}
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: .2s ease;
+      cursor: pointer;
+    }
 
-h1{
-font-size:48px;
-margin-bottom:12px
-}
+    .btn:hover { transform: translateY(-1px); }
+    .btn-white { background: #fff; color: #2563eb; }
+    .btn-outline { border: 1px solid rgba(255,255,255,.35); color: #fff; }
+    .btn-dark { background: #2563eb; color: #fff; }
 
-.hero p{
-font-size:20px
-}
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 34px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
 
-.btn{
-padding:12px 20px;
-border-radius:10px;
-font-weight:bold;
-display:inline-block;
-margin-top:16px
-}
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.16);
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
 
-.btn-white{
-background:#fff;
-color:#2563eb
-}
+    h1 {
+      font-size: 58px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+      max-width: 760px;
+    }
 
-.phone{
-width:320px;
-background:#000;
-border-radius:40px;
-padding:10px;
-margin:auto
-}
+    .hero p {
+      font-size: 20px;
+      color: rgba(255,255,255,.94);
+      max-width: 700px;
+    }
 
-.phone-screen{
-background:#fff;
-border-radius:30px;
-overflow:hidden
-}
+    .rating-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 24px 0;
+      align-items: center;
+    }
 
-.slider{
-width:100%;
-height:520px;
-overflow:hidden;
-position:relative
-}
+    .stars {
+      color: #facc15;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
 
-.slides{
-display:flex;
-width:600%;
-height:100%;
-animation:slide 20s infinite
-}
+    .pill {
+      background: rgba(255,255,255,.14);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
 
-.slide{
-width:16.6%;
-flex-shrink:0
-}
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
 
-.slide img{
-width:100%;
-height:100%;
-object-fit:cover
-}
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-@keyframes slide{
+    .tags span {
+      background: rgba(255,255,255,.13);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
 
-0%,10%{
-transform:translateX(0)
-}
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      direction: ltr !important;
+    }
 
-20%,30%{
-transform:translateX(-100%)
-}
+    .phone-wrap::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.13);
+      filter: blur(40px);
+      z-index: 0;
+    }
 
-40%,50%{
-transform:translateX(-200%)
-}
+    .iphone {
+      width: 330px;
+      background: #0f172a;
+      border-radius: 42px;
+      padding: 12px;
+      box-shadow: 0 30px 70px rgba(0,0,0,.32);
+      position: relative;
+      z-index: 2;
+      animation: floatPhone 4s ease-in-out infinite;
+      direction: ltr !important;
+    }
 
-60%,70%{
-transform:translateX(-300%)
-}
+    @keyframes floatPhone {
+      0%,100% { transform: rotate(-3deg) translateY(0); }
+      50% { transform: rotate(-3deg) translateY(-8px); }
+    }
 
-80%,90%{
-transform:translateX(-400%)
-}
+    .iphone::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 22px;
+      background: #020617;
+      border-radius: 0 0 18px 18px;
+      z-index: 3;
+    }
 
-100%{
-transform:translateX(-500%)
-}
+    .iphone-screen {
+      background: #fff;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      direction: ltr !important;
+    }
 
-}
+    .slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9/19.5;
+      overflow: hidden;
+      background: #fff;
+      direction: ltr !important;
+    }
 
-.features{
-padding:80px 0
-}
+    .slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      direction: ltr !important;
+      transition: opacity .5s ease;
+    }
 
-.features-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px
-}
+    .phone-label {
+      text-align: center;
+      color: #fff;
+      margin-top: 18px;
+      font-size: 14px;
+      opacity: .95;
+    }
 
-.feature{
-background:#fff;
-padding:20px;
-border-radius:16px;
-border:1px solid #e2e8f0
-}
+    .stats-strip {
+      margin-top: -34px;
+      position: relative;
+      z-index: 5;
+    }
 
-.feature h3{
-margin-bottom:8px
-}
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 18px;
+    }
 
-footer{
-background:#020617;
-color:#94a3b8;
-text-align:center;
-padding:20px;
-margin-top:60px
-}
+    .stat-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 12px 32px rgba(15,23,42,.08);
+      border: 1px solid #e2e8f0;
+      text-align: center;
+    }
 
-body[data-lang="ar"]{
-direction:rtl
-}
+    .stat-card h3 {
+      font-size: 34px;
+      color: #2563eb;
+      margin-bottom: 6px;
+    }
 
-body[data-lang="ar"] .slider,
-body[data-lang="ar"] .slides,
-body[data-lang="ar"] .slide{
-direction:ltr
-}
+    .stat-card p {
+      color: #64748b;
+      font-weight: 600;
+    }
 
-@media(max-width:900px){
+    section { padding: 78px 0; }
 
-.hero-grid{
-grid-template-columns:1fr
-}
+    .section-title {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 42px;
+    }
 
-.features-grid{
-grid-template-columns:1fr
-}
+    .section-title h2 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
 
-}
+    .section-title p {
+      color: #64748b;
+      font-size: 19px;
+    }
 
-</style>
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15,23,42,.04);
+      transition: .2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(15,23,42,.08);
+    }
+
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: #dbeafe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: #64748b;
+    }
+
+    .gallery {
+      background: #eef4ff;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 18px;
+      direction: ltr !important;
+    }
+
+    .gallery-card {
+      background: #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(15,23,42,.06);
+      border: 1px solid #e2e8f0;
+      direction: ltr !important;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-card p {
+      padding: 14px 16px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .reviews-box {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      background: linear-gradient(135deg,#fff7ed,#ffffff);
+      border: 1px solid #fed7aa;
+      border-radius: 28px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .reviews-big-stars {
+      color: #f59e0b;
+      font-size: 30px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .reviews-score {
+      font-size: 46px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .reviews-sub {
+      color: #64748b;
+      font-size: 18px;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .testimonial {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(15,23,42,.04);
+    }
+
+    .testimonial .stars-mini {
+      color: #f59e0b;
+      margin-bottom: 10px;
+    }
+
+    .testimonial p {
+      color: #334155;
+      margin-bottom: 12px;
+    }
+
+    .pricing-wrap {
+      max-width: 620px;
+      margin: auto;
+      background: #fff;
+      border-radius: 30px;
+      border: 2px solid #bfdbfe;
+      box-shadow: 0 18px 46px rgba(15,23,42,.08);
+      overflow: hidden;
+    }
+
+    .pricing-head {
+      background: #2563eb;
+      color: #fff;
+      text-align: center;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .pricing-body {
+      padding: 34px 26px;
+      text-align: center;
+    }
+
+    .price-note {
+      color: #64748b;
+      font-size: 16px;
+    }
+
+    .price {
+      font-size: 60px;
+      font-weight: 800;
+      margin: 12px 0;
+    }
+
+    .free-box {
+      margin: 20px 0;
+      padding: 14px;
+      border-radius: 18px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #15803d;
+      font-weight: 700;
+    }
+
+    .pricing-list {
+      text-align: left;
+      max-width: 390px;
+      margin: 24px auto;
+    }
+
+    .pricing-list div {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2563eb;
+      flex-shrink: 0;
+    }
+
+    .faq {
+      background: #fff;
+    }
+
+    .faq-list {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(15,23,42,.04);
+    }
+
+    .faq-question {
+      width: 100%;
+      border: none;
+      background: #fff;
+      text-align: left;
+      padding: 20px 22px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #0f172a;
+    }
+
+    .faq-answer {
+      padding: 0 22px 20px;
+      color: #64748b;
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .cta {
+      background: #0f172a;
+      color: #fff;
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .cta h2 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: rgba(255,255,255,.78);
+      font-size: 18px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-dark-light { background: #fff; color: #0f172a; }
+    .btn-dark-outline { color: #fff; border: 1px solid rgba(255,255,255,.24); }
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #25d366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 16px 34px rgba(0,0,0,.22);
+      z-index: 999;
+    }
+
+    footer {
+      background: #020617;
+      color: #94a3b8;
+      text-align: center;
+      padding: 24px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width:1000px) {
+      .hero-grid,
+      .stats-grid,
+      .features-grid,
+      .gallery-grid,
+      .testimonials,
+      .cta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 { font-size: 40px; }
+      .section-title h2, .cta h2 { font-size: 30px; }
+      .price { font-size: 46px; }
+      .iphone { width: 290px; }
+      .gallery-card img { height: auto; }
+    }
+
+    body[data-lang="ar"] {
+      direction: rtl;
+    }
+
+    body[data-lang="ar"] .nav,
+    body[data-lang="ar"] .hero-grid,
+    body[data-lang="ar"] .rating-row,
+    body[data-lang="ar"] .hero-actions,
+    body[data-lang="ar"] .tags,
+    body[data-lang="ar"] .cta-actions {
+      direction: rtl;
+    }
+
+    body[data-lang="ar"] .feature-card,
+    body[data-lang="ar"] .testimonial,
+    body[data-lang="ar"] .faq-question,
+    body[data-lang="ar"] .pricing-list {
+      text-align: right;
+    }
+
+    body[data-lang="ar"] .pricing-list div {
+      flex-direction: row-reverse;
+    }
+
+    body[data-lang="ar"] .section-title,
+    body[data-lang="ar"] .reviews-box,
+    body[data-lang="ar"] .stat-card,
+    body[data-lang="ar"] .pricing-body,
+    body[data-lang="ar"] footer {
+      text-align: center;
+    }
+
+    /* مهم جدًا: الهاتف والصور يبقون LTR دائمًا */
+    body[data-lang="ar"] .phone-wrap,
+    body[data-lang="ar"] .iphone,
+    body[data-lang="ar"] .iphone-screen,
+    body[data-lang="ar"] .slider,
+    body[data-lang="ar"] .slider img,
+    body[data-lang="ar"] .gallery-grid,
+    body[data-lang="ar"] .gallery-card,
+    body[data-lang="ar"] .gallery-card img,
+    body[data-lang="en"] .phone-wrap,
+    body[data-lang="en"] .iphone,
+    body[data-lang="en"] .iphone-screen,
+    body[data-lang="en"] .slider,
+    body[data-lang="en"] .slider img {
+      direction: ltr !important;
+    }
+  </style>
 </head>
-
 <body data-lang="pt">
 
-<div class="hero">
-
-<div class="container">
-
-<div class="nav">
-
-<div class="logo" data-i18n="logo">
-Catálogo Oficial
-</div>
-
-<div class="lang-switch">
-
-<button class="active" onclick="setLang('pt',this)">
-PT
-</button>
-
-<button onclick="setLang('ar',this)">
-AR
-</button>
-
-<button onclick="setLang('en',this)">
-EN
-</button>
-
-</div>
-
-</div>
-
-
-<div class="hero-grid">
-
-<div>
-
-<h1 data-i18n="title">
-Crie sua loja online e receba pedidos no WhatsApp
-</h1>
-
-<p data-i18n="desc">
-Venda produtos, aceite PIX e receba pedidos diretamente no WhatsApp.
-</p>
-
-<a class="btn btn-white" href="https://wa.me/5541997962177">
-WhatsApp
-</a>
-
-</div>
-
-<div class="phone">
-
-<div class="phone-screen">
-
-<div class="slider">
-
-<div class="slides">
-
-<div class="slide">
-<img src="app1.jpg">
-</div>
-
-<div class="slide">
-<img src="app2.jpg">
-</div>
-
-<div class="slide">
-<img src="app3.jpg">
-</div>
-
-<div class="slide">
-<img src="app4.jpg">
-</div>
-
-<div class="slide">
-<img src="app5.jpg">
-</div>
-
-<div class="slide">
-<img src="app6.jpg">
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<section class="features">
-
-<div class="container">
-
-<div class="features-grid">
-
-<div class="feature">
-<h3 data-i18n="f1">
-Catálogo digital
-</h3>
-<p data-i18n="f1d">
-Adicione produtos e compartilhe sua loja.
-</p>
-</div>
-
-<div class="feature">
-<h3 data-i18n="f2">
-Pedidos no WhatsApp
-</h3>
-<p data-i18n="f2d">
-Receba pedidos diretamente no WhatsApp.
-</p>
-</div>
-
-<div class="feature">
-<h3 data-i18n="f3">
-PIX automático
-</h3>
-<p data-i18n="f3d">
-Receba pagamentos via PIX.
-</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<footer data-i18n="footer">
-
-© Catálogo Oficial
-
-</footer>
-
-
-<script>
-
-const translations = {
-
-pt:{
-logo:"Catálogo Oficial",
-title:"Crie sua loja online e receba pedidos no WhatsApp",
-desc:"Venda produtos, aceite PIX e receba pedidos diretamente no WhatsApp.",
-f1:"Catálogo digital",
-f1d:"Adicione produtos e compartilhe sua loja.",
-f2:"Pedidos no WhatsApp",
-f2d:"Receba pedidos diretamente no WhatsApp.",
-f3:"PIX automático",
-f3d:"Receba pagamentos via PIX.",
-footer:"© Catálogo Oficial"
-},
-
-ar:{
-logo:"كاتالوج أوفيشيال",
-title:"أنشئ متجرك الإلكتروني واستقبل الطلبات عبر واتساب",
-desc:"بع منتجاتك واستقبل الطلبات مباشرة عبر واتساب.",
-f1:"كتالوج رقمي",
-f1d:"أضف منتجاتك وشارك متجرك.",
-f2:"طلبات عبر واتساب",
-f2d:"استقبل الطلبات مباشرة.",
-f3:"دفع PIX",
-f3d:"استقبل المدفوعات بسهولة.",
-footer:"© كاتالوج أوفيشيال"
-},
-
-en:{
-logo:"Official Catalog",
-title:"Create your online store and receive orders on WhatsApp",
-desc:"Sell products and receive orders directly on WhatsApp.",
-f1:"Digital catalog",
-f1d:"Add products and share your store.",
-f2:"WhatsApp orders",
-f2d:"Receive orders directly on WhatsApp.",
-f3:"PIX payments",
-f3d:"Receive payments via PIX.",
-footer:"© Official Catalog"
-}
-
-}
-
-
-function setLang(lang,btn){
-
-document.body.setAttribute("data-lang",lang)
-
-document.querySelectorAll(".lang-switch button").forEach(b=>b.classList.remove("active"))
-
-btn.classList.add("active")
-
-document.querySelectorAll("[data-i18n]").forEach(el=>{
-
-const key=el.getAttribute("data-i18n")
-
-if(translations[lang][key]){
-
-el.innerText=translations[lang][key]
-
-}
-
-})
-
-}
-
-</script>
-
-
+  <a class="floating-whatsapp" id="floatingWhatsapp" href="https://wa.me/5541997962177?text=Olá%20quero%20criar%20minha%20loja" target="_blank">✆</a>
+
+  <section class="hero">
+    <div class="container">
+      <div class="nav">
+        <div class="logo" data-i18n="logo">Catálogo Oficial</div>
+
+        <div class="nav-right">
+          <div class="lang-switch">
+            <button class="active" type="button" onclick="setLang('pt', this)">PT</button>
+            <button type="button" onclick="setLang('ar', this)">AR</button>
+            <button type="button" onclick="setLang('en', this)">EN</button>
+          </div>
+          <a href="#recursos" class="btn btn-outline" data-i18n="nav_resources">Recursos</a>
+          <a id="navStartLink" href="https://wa.me/5541997962177?text=Quero%20criar%20minha%20loja%20no%20Catálogo%20Oficial" class="btn btn-white" data-i18n="nav_start">Começar grátis</a>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <div class="badge" data-i18n="badge">Teste grátis por 15 dias</div>
+          <h1 data-i18n="hero_title">Crie sua loja online e receba pedidos no WhatsApp</h1>
+          <p data-i18n="hero_text">
+            O Catálogo Oficial ajuda lojistas a vender produtos, aceitar PIX, compartilhar catálogo,
+            receber pedidos, mostrar vídeos da loja e gerenciar vendedores, afiliados e anúncios.
+          </p>
+
+          <div class="rating-row">
+            <div class="stars">★★★★★</div>
+            <div class="pill" data-i18n="rating_1">4.8 de avaliação</div>
+            <div class="pill" data-i18n="rating_2">19.4k avaliações</div>
+          </div>
+
+          <div class="hero-actions">
+            <a id="heroStartLink" href="https://wa.me/5541997962177?text=Quero%20criar%20minha%20loja%20no%20Catálogo%20Oficial" class="btn btn-white" data-i18n="hero_btn1">Começar grátis</a>
+            <a href="#recursos" class="btn btn-outline" data-i18n="hero_btn2">Ver recursos</a>
+          </div>
+
+          <div class="tags">
+            <span data-i18n="tag1">Catálogo digital</span>
+            <span data-i18n="tag2">Pedidos no WhatsApp</span>
+            <span data-i18n="tag3">PIX automático</span>
+            <span data-i18n="tag4">R$19,90/mês</span>
+            <span data-i18n="tag5">Vendedores</span>
+            <span data-i18n="tag6">Afiliados</span>
+          </div>
+        </div>
+
+        <div class="phone-wrap">
+          <div>
+            <div class="iphone">
+              <div class="iphone-screen">
+                <div class="slider">
+                  <img id="heroSliderImage" src="app1.jpg" alt="App screen" />
+                </div>
+              </div>
+            </div>
+            <div class="phone-label" data-i18n="phone_label">Veja o aplicativo funcionando por dentro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3 class="counter" data-target="490">0</h3>
+          <p data-i18n="stat1">Visualizações</p>
+        </div>
+        <div class="stat-card">
+          <h3 class="counter" data-target="200">0</h3>
+          <p data-i18n="stat2">Visitantes únicos</p>
+        </div>
+        <div class="stat-card">
+          <h3 class="counter" data-target="39">0</h3>
+          <p data-i18n="stat3">Pedidos</p>
+        </div>
+        <div class="stat-card">
+          <h3>R$ <span class="counter" data-target="8958">0</span></h3>
+          <p data-i18n="stat4">Faturamento</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="recursos">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="features_title">Tudo o que o lojista precisa para vender mais</h2>
+        <p data-i18n="features_text">
+          Sua plataforma já reúne catálogo, pedidos, histórico, vídeos, links sociais,
+          painel de controle e ferramentas para crescer a loja.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon">📦</div><h3 data-i18n="f1t">Catálogo digital</h3><p data-i18n="f1d">Adicione produtos, fotos, categorias, descrições e controle de visibilidade.</p></div>
+        <div class="feature-card"><div class="feature-icon">📲</div><h3 data-i18n="f2t">Pedidos no WhatsApp</h3><p data-i18n="f2d">Receba pedidos direto no WhatsApp e acompanhe tudo no histórico.</p></div>
+        <div class="feature-card"><div class="feature-icon">💰</div><h3 data-i18n="f3t">PIX automático</h3><p data-i18n="f3d">Receba pagamentos com PIX e acompanhe pedidos pagos com mais facilidade.</p></div>
+        <div class="feature-card"><div class="feature-icon">📊</div><h3 data-i18n="f4t">Dashboard e histórico</h3><p data-i18n="f4d">Veja visualizações, visitantes, pedidos, faturamento e histórico completo.</p></div>
+        <div class="feature-card"><div class="feature-icon">🎥</div><h3 data-i18n="f5t">YouTube e redes sociais</h3><p data-i18n="f5d">Mostre vídeos da loja, Instagram, grupo do WhatsApp e aumente confiança.</p></div>
+        <div class="feature-card"><div class="feature-icon">🧾</div><h3 data-i18n="f6t">QR Code e PDF</h3><p data-i18n="f6d">Compartilhe sua loja com QR Code e exporte seu catálogo em PDF.</p></div>
+        <div class="feature-card"><div class="feature-icon">👥</div><h3 data-i18n="f7t">Vendedores</h3><p data-i18n="f7d">Gerencie vendedores, links exclusivos e acompanhe vendas de cada um.</p></div>
+        <div class="feature-card"><div class="feature-icon">🤝</div><h3 data-i18n="f8t">Gestão de Afiliados</h3><p data-i18n="f8d">Crie sistema de indicação, códigos e comissões para ampliar as vendas.</p></div>
+        <div class="feature-card"><div class="feature-icon">🎬</div><h3 data-i18n="f9t">Ad Studio e banners</h3><p data-i18n="f9d">Crie anúncios, banners promocionais, roteiros e materiais de divulgação.</p></div>
+        <div class="feature-card"><div class="feature-icon">🧠</div><h3 data-i18n="f10t">Créditos AI</h3><p data-i18n="f10d">Use recursos de IA para criar conteúdo e melhorar a apresentação da loja.</p></div>
+        <div class="feature-card"><div class="feature-icon">🎁</div><h3 data-i18n="f11t">Convidar Amigos</h3><p data-i18n="f11d">Indique amigos, ganhe créditos e aumente sua rede de contatos comerciais.</p></div>
+        <div class="feature-card"><div class="feature-icon">⚙️</div><h3 data-i18n="f12t">Painel de controle</h3><p data-i18n="f12d">Acompanhe compras, receita, estatísticas e o desempenho do negócio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="gallery_title">Veja telas reais do aplicativo</h2>
+        <p data-i18n="gallery_text">Catálogo, pedidos, histórico, redes sociais, vídeos, vendedores e afiliados em um só lugar.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-card"><img src="app1.jpg" alt="Tela 1"><p data-i18n="g1">Catálogo de produtos</p></div>
+        <div class="gallery-card"><img src="app3.jpg" alt="Tela 3"><p data-i18n="g2">Categorias e vitrine</p></div>
+        <div class="gallery-card"><img src="app4.jpg" alt="Tela 4"><p data-i18n="g3">Histórico e pedidos</p></div>
+        <div class="gallery-card"><img src="app5.jpg" alt="Tela 5"><p data-i18n="g4">Perfil da loja e avaliações</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="reviews_title">Lojistas aprovam o Catálogo Oficial</h2>
+        <p data-i18n="reviews_text">Uma plataforma feita para vender mais e organizar melhor a loja.</p>
+      </div>
+
+      <div class="reviews-box">
+        <div class="reviews-big-stars">★★★★★</div>
+        <div class="reviews-score">4.8</div>
+        <div class="reviews-sub" data-i18n="reviews_sub">Baseado em 19.4k avaliações</div>
+      </div>
+
+      <div class="testimonials">
+        <div class="testimonial">
+          <div class="stars-mini">★★★★★</div>
+          <p data-i18n="t1">Consegui organizar meus produtos, receber pedidos no WhatsApp e vender muito mais.</p>
+          <strong data-i18n="t1n">Loja feminina</strong>
+        </div>
+        <div class="testimonial">
+          <div class="stars-mini">★★★★★</div>
+          <p data-i18n="t2">O painel, o PIX e o sistema de vendedores ajudaram muito no crescimento da minha loja.</p>
+          <strong data-i18n="t2n">Loja atacadista</strong>
+        </div>
+        <div class="testimonial">
+          <div class="stars-mini">★★★★★</div>
+          <p data-i18n="t3">Os vídeos, o QR Code e o link da loja deixaram minha divulgação muito mais profissional.</p>
+          <strong data-i18n="t3n">Loja de acessórios</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="price_title">Preço simples para começar</h2>
+        <p data-i18n="price_text">Teste grátis por 15 dias e depois continue com um valor acessível para sua loja.</p>
+      </div>
+
+      <div class="pricing-wrap">
+        <div class="pricing-head" data-i18n="plan">Plano PRO</div>
+        <div class="pricing-body">
+          <div class="price-note" data-i18n="after_trial">Depois do teste grátis</div>
+          <div class="price">R$19,90</div>
+          <div class="price-note" data-i18n="per_month">por mês</div>
+          <div class="free-box" data-i18n="free_trial">15 dias grátis para novos lojistas</div>
+
+          <div class="pricing-list">
+            <div><span class="dot"></span><span data-i18n="pl1">Loja online com link próprio</span></div>
+            <div><span class="dot"></span><span data-i18n="pl2">Produtos e categorias ilimitados</span></div>
+            <div><span class="dot"></span><span data-i18n="pl3">Pedidos pelo WhatsApp</span></div>
+            <div><span class="dot"></span><span data-i18n="pl4">Dashboard, histórico e estatísticas</span></div>
+            <div><span class="dot"></span><span data-i18n="pl5">Vendedores, afiliados e anúncios</span></div>
+            <div><span class="dot"></span><span data-i18n="pl6">PIX, QR Code, PDF, Instagram e YouTube</span></div>
+          </div>
+
+          <a id="priceStartLink" href="https://wa.me/5541997962177?text=Quero%20começar%20meu%20teste%20grátis%20no%20Catálogo%20Oficial" class="btn btn-dark" data-i18n="price_btn">Começar meu teste grátis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-i18n="faq_title">Perguntas frequentes</h2>
+        <p data-i18n="faq_text">As respostas principais para começar sua loja sem complicação.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item active">
+          <button class="faq-question" type="button" data-i18n="q1">Preciso instalar aplicativo?</button>
+          <div class="faq-answer" data-i18n="a1">Você pode divulgar sua loja online rapidamente e também usar os recursos do aplicativo conforme seu plano.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-i18n="q2">Posso receber pedidos pelo WhatsApp?</button>
+          <div class="faq-answer" data-i18n="a2">Sim. Seus clientes podem escolher produtos e enviar os pedidos diretamente pelo WhatsApp.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-i18n="q3">Tem teste grátis?</button>
+          <div class="faq-answer" data-i18n="a3">Sim. Você recebe 15 dias grátis para testar os principais recursos da plataforma.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" data-i18n="q4">Posso adicionar Instagram e YouTube?</button>
+          <div class="faq-answer" data-i18n="a4">Sim. Você pode mostrar Instagram, grupo do WhatsApp, vídeos e outros links sociais na sua loja.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container cta-grid">
+      <div>
+        <h2 data-i18n="cta_title">Transforme seu celular em uma loja online completa</h2>
+        <p data-i18n="cta_text">Crie sua loja, publique produtos, compartilhe com clientes e receba pedidos de forma prática em um único lugar.</p>
+      </div>
+      <div class="cta-actions">
+        <a id="ctaWhatsappLink" href="https://wa.me/5541997962177" class="btn btn-dark-light" data-i18n="cta_btn1">Falar no WhatsApp</a>
+        <a href="#recursos" class="btn btn-dark-outline" data-i18n="cta_btn2">Ver recursos</a>
+      </div>
+    </div>
+  </section>
+
+  <footer data-i18n="footer">
+    © Catálogo Oficial - Todos os direitos reservados
+  </footer>
+
+  <script>
+    const translations = {
+      pt: {
+        logo:"Catálogo Oficial",
+        nav_resources:"Recursos",
+        nav_start:"Começar grátis",
+        badge:"Teste grátis por 15 dias",
+        hero_title:"Crie sua loja online e receba pedidos no WhatsApp",
+        hero_text:"O Catálogo Oficial ajuda lojistas a vender produtos, aceitar PIX, compartilhar catálogo, receber pedidos, mostrar vídeos da loja e gerenciar vendedores, afiliados e anúncios.",
+        rating_1:"4.8 de avaliação",
+        rating_2:"19.4k avaliações",
+        hero_btn1:"Começar grátis",
+        hero_btn2:"Ver recursos",
+        tag1:"Catálogo digital",
+        tag2:"Pedidos no WhatsApp",
+        tag3:"PIX automático",
+        tag4:"R$19,90/mês",
+        tag5:"Vendedores",
+        tag6:"Afiliados",
+        phone_label:"Veja o aplicativo funcionando por dentro",
+        stat1:"Visualizações",
+        stat2:"Visitantes únicos",
+        stat3:"Pedidos",
+        stat4:"Faturamento",
+        features_title:"Tudo o que o lojista precisa para vender mais",
+        features_text:"Sua plataforma já reúne catálogo, pedidos, histórico, vídeos, links sociais, painel de controle e ferramentas para crescer a loja.",
+        f1t:"Catálogo digital", f1d:"Adicione produtos, fotos, categorias, descrições e controle de visibilidade.",
+        f2t:"Pedidos no WhatsApp", f2d:"Receba pedidos direto no WhatsApp e acompanhe tudo no histórico.",
+        f3t:"PIX automático", f3d:"Receba pagamentos com PIX e acompanhe pedidos pagos com mais facilidade.",
+        f4t:"Dashboard e histórico", f4d:"Veja visualizações, visitantes, pedidos, faturamento e histórico completo.",
+        f5t:"YouTube e redes sociais", f5d:"Mostre vídeos da loja, Instagram, grupo do WhatsApp e aumente confiança.",
+        f6t:"QR Code e PDF", f6d:"Compartilhe sua loja com QR Code e exporte seu catálogo em PDF.",
+        f7t:"Vendedores", f7d:"Gerencie vendedores, links exclusivos e acompanhe vendas de cada um.",
+        f8t:"Gestão de Afiliados", f8d:"Crie sistema de indicação, códigos e comissões para ampliar as vendas.",
+        f9t:"Ad Studio e banners", f9d:"Crie anúncios, banners promocionais, roteiros e materiais de divulgação.",
+        f10t:"Créditos AI", f10d:"Use recursos de IA para criar conteúdo e melhorar a apresentação da loja.",
+        f11t:"Convidar Amigos", f11d:"Indique amigos, ganhe créditos e aumente sua rede de contatos comerciais.",
+        f12t:"Painel de controle", f12d:"Acompanhe compras, receita, estatísticas e o desempenho do negócio.",
+        gallery_title:"Veja telas reais do aplicativo",
+        gallery_text:"Catálogo, pedidos, histórico, redes sociais, vídeos, vendedores e afiliados em um só lugar.",
+        g1:"Catálogo de produtos",
+        g2:"Categorias e vitrine",
+        g3:"Histórico e pedidos",
+        g4:"Perfil da loja e avaliações",
+        reviews_title:"Lojistas aprovam o Catálogo Oficial",
+        reviews_text:"Uma plataforma feita para vender mais e organizar melhor a loja.",
+        reviews_sub:"Baseado em 19.4k avaliações",
+        t1:"Consegui organizar meus produtos, receber pedidos no WhatsApp e vender muito mais.",
+        t1n:"Loja feminina",
+        t2:"O painel, o PIX e o sistema de vendedores ajudaram muito no crescimento da minha loja.",
+        t2n:"Loja atacadista",
+        t3:"Os vídeos, o QR Code e o link da loja deixaram minha divulgação muito mais profissional.",
+        t3n:"Loja de acessórios",
+        price_title:"Preço simples para começar",
+        price_text:"Teste grátis por 15 dias e depois continue com um valor acessível para sua loja.",
+        plan:"Plano PRO",
+        after_trial:"Depois do teste grátis",
+        per_month:"por mês",
+        free_trial:"15 dias grátis para novos lojistas",
+        pl1:"Loja online com link próprio",
+        pl2:"Produtos e categorias ilimitados",
+        pl3:"Pedidos pelo WhatsApp",
+        pl4:"Dashboard, histórico e estatísticas",
+        pl5:"Vendedores, afiliados e anúncios",
+        pl6:"PIX, QR Code, PDF, Instagram e YouTube",
+        price_btn:"Começar meu teste grátis",
+        faq_title:"Perguntas frequentes",
+        faq_text:"As respostas principais para começar sua loja sem complicação.",
+        q1:"Preciso instalar aplicativo?",
+        a1:"Você pode divulgar sua loja online rapidamente e também usar os recursos do aplicativo conforme seu plano.",
+        q2:"Posso receber pedidos pelo WhatsApp?",
+        a2:"Sim. Seus clientes podem escolher produtos e enviar os pedidos diretamente pelo WhatsApp.",
+        q3:"Tem teste grátis?",
+        a3:"Sim. Você recebe 15 dias grátis para testar os principais recursos da plataforma.",
+        q4:"Posso adicionar Instagram e YouTube?",
+        a4:"Sim. Você pode mostrar Instagram, grupo do WhatsApp, vídeos e outros links sociais na sua loja.",
+        cta_title:"Transforme seu celular em uma loja online completa",
+        cta_text:"Crie sua loja, publique produtos, compartilhe com clientes e receba pedidos de forma prática em um único lugar.",
+        cta_btn1:"Falar no WhatsApp",
+        cta_btn2:"Ver recursos",
+        footer:"© Catálogo Oficial - Todos os direitos reservados",
+        wa_start:"Quero criar minha loja no Catálogo Oficial",
+        wa_trial:"Quero começar meu teste grátis no Catálogo Oficial",
+        wa_chat:"Olá, quero saber mais sobre o Catálogo Oficial"
+      },
+
+      ar: {
+        logo:"كاتالوج أوفيشيال",
+        nav_resources:"المميزات",
+        nav_start:"ابدأ مجانًا",
+        badge:"تجربة مجانية لمدة 15 يومًا",
+        hero_title:"أنشئ متجرك الإلكتروني واستقبل الطلبات عبر واتساب",
+        hero_text:"يساعدك كاتالوج أوفيشيال على بيع المنتجات، استقبال PIX، مشاركة الكتالوج، تلقي الطلبات، عرض فيديوهات المتجر، وإدارة البائعين والأفلييت والإعلانات.",
+        rating_1:"تقييم 4.8",
+        rating_2:"19.4 ألف تقييم",
+        hero_btn1:"ابدأ مجانًا",
+        hero_btn2:"شاهد المميزات",
+        tag1:"كتالوج رقمي",
+        tag2:"طلبات عبر واتساب",
+        tag3:"دفع PIX",
+        tag4:"R$19,90/شهريًا",
+        tag5:"البائعون",
+        tag6:"الأفلييت",
+        phone_label:"شاهد التطبيق من الداخل",
+        stat1:"المشاهدات",
+        stat2:"الزوار الفريدون",
+        stat3:"الطلبات",
+        stat4:"الإيرادات",
+        features_title:"كل ما يحتاجه التاجر ليبيع أكثر",
+        features_text:"المنصة تجمع الكتالوج، الطلبات، السجل، الفيديوهات، الروابط الاجتماعية، لوحة التحكم وأدوات تطوير المتجر.",
+        f1t:"كتالوج رقمي", f1d:"أضف المنتجات والصور والأقسام والوصف والتحكم في الظهور.",
+        f2t:"طلبات عبر واتساب", f2d:"استقبل طلبات العملاء مباشرة في واتساب وتابع كل شيء بسهولة.",
+        f3t:"PIX تلقائي", f3d:"استقبل المدفوعات عبر PIX وتابع الطلبات المدفوعة بسهولة.",
+        f4t:"لوحة تحكم وسجل", f4d:"شاهد المشاهدات والزوار والطلبات والإيرادات والسجل الكامل.",
+        f5t:"يوتيوب وروابط اجتماعية", f5d:"اعرض فيديوهات المتجر وإنستغرام ومجموعة واتساب لزيادة الثقة.",
+        f6t:"QR Code و PDF", f6d:"شارك متجرك عبر QR Code وصدّر الكتالوج PDF.",
+        f7t:"البائعون", f7d:"أدر البائعين والروابط الخاصة وتابع مبيعات كل واحد.",
+        f8t:"إدارة الأفلييت", f8d:"أنشئ نظام دعوات وأكواد وعمولات لتوسيع المبيعات.",
+        f9t:"استوديو الإعلانات", f9d:"أنشئ إعلانات وبانرات ونصوص ومواد دعائية لمتجرك.",
+        f10t:"اعتمادات AI", f10d:"استعمل الذكاء الاصطناعي لإنشاء محتوى وتحسين عرض متجرك.",
+        f11t:"دعوة الأصدقاء", f11d:"ادعُ أصدقاءك واربح اعتمادات ووسّع شبكتك التجارية.",
+        f12t:"لوحة إدارة", f12d:"تابع المشتريات والدخل والإحصائيات وأداء النشاط التجاري.",
+        gallery_title:"شاهد صورًا حقيقية من التطبيق",
+        gallery_text:"الكتالوج، الطلبات، السجل، الشبكات الاجتماعية، الفيديوهات، البائعون والأفلييت في مكان واحد.",
+        g1:"كتالوج المنتجات",
+        g2:"الأقسام والواجهة",
+        g3:"السجل والطلبات",
+        g4:"صفحة المتجر والتقييمات",
+        reviews_title:"التجار يثقون في كاتالوج أوفيشيال",
+        reviews_text:"منصة تساعدك على البيع أكثر وتنظيم المتجر بشكل أفضل.",
+        reviews_sub:"بناءً على 19.4 ألف تقييم",
+        t1:"استطعت تنظيم المنتجات واستقبال الطلبات على واتساب وزادت مبيعاتي كثيرًا.",
+        t1n:"متجر نسائي",
+        t2:"لوحة التحكم وPIX ونظام البائعين ساعدوني كثيرًا على تطوير المتجر.",
+        t2n:"متجر جملة",
+        t3:"الفيديوهات وQR Code ورابط المتجر جعلوا عرضي أكثر احترافية.",
+        t3n:"متجر إكسسوارات",
+        price_title:"سعر بسيط للانطلاق",
+        price_text:"جرّب مجانًا 15 يومًا ثم استمر بسعر مناسب لمتجرك.",
+        plan:"خطة PRO",
+        after_trial:"بعد انتهاء التجربة",
+        per_month:"شهريًا",
+        free_trial:"15 يومًا مجانًا للتجار الجدد",
+        pl1:"متجر إلكتروني برابط خاص",
+        pl2:"منتجات وأقسام غير محدودة",
+        pl3:"طلبات عبر واتساب",
+        pl4:"لوحة تحكم وسجل وإحصائيات",
+        pl5:"بائعون وأفلييت وإعلانات",
+        pl6:"PIX و QR Code و PDF و Instagram و YouTube",
+        price_btn:"ابدأ تجربتي المجانية",
+        faq_title:"الأسئلة الشائعة",
+        faq_text:"أهم الإجابات التي تحتاجها للبدء بسهولة.",
+        q1:"هل أحتاج إلى تثبيت تطبيق؟",
+        a1:"يمكنك عرض متجرك بسرعة أونلاين، كما يمكنك استخدام التطبيق وخصائصه حسب خطتك.",
+        q2:"هل يمكن استقبال الطلبات عبر واتساب؟",
+        a2:"نعم، يمكن للزبائن اختيار المنتجات وإرسال الطلبات مباشرة عبر واتساب.",
+        q3:"هل توجد تجربة مجانية؟",
+        a3:"نعم، لديك 15 يومًا مجانًا لتجربة أهم مميزات المنصة.",
+        q4:"هل أستطيع إضافة إنستغرام ويوتيوب؟",
+        a4:"نعم، يمكنك عرض إنستغرام ومجموعة واتساب والفيديوهات والروابط الاجتماعية داخل متجرك.",
+        cta_title:"حوّل هاتفك إلى متجر إلكتروني كامل",
+        cta_text:"أنشئ متجرك، أضف منتجاتك، شاركها مع العملاء واستقبل الطلبات بسهولة من مكان واحد.",
+        cta_btn1:"تحدث على واتساب",
+        cta_btn2:"شاهد المميزات",
+        footer:"© كاتالوج أوفيشيال - جميع الحقوق محفوظة",
+        wa_start:"أريد إنشاء متجري في كاتالوج أوفيشيال",
+        wa_trial:"أريد بدء التجربة المجانية في كاتالوج أوفيشيال",
+        wa_chat:"مرحبًا، أريد معرفة المزيد عن كاتالوج أوفيشيال"
+      },
+
+      en: {
+        logo:"Official Catalog",
+        nav_resources:"Features",
+        nav_start:"Start free",
+        badge:"15-day free trial",
+        hero_title:"Create your online store and receive orders on WhatsApp",
+        hero_text:"Official Catalog helps merchants sell products, accept PIX, share their catalog, receive orders, show store videos, and manage sellers, affiliates, and ads.",
+        rating_1:"4.8 rating",
+        rating_2:"19.4k reviews",
+        hero_btn1:"Start free",
+        hero_btn2:"See features",
+        tag1:"Digital catalog",
+        tag2:"WhatsApp orders",
+        tag3:"Automatic PIX",
+        tag4:"R$19.90/month",
+        tag5:"Sellers",
+        tag6:"Affiliates",
+        phone_label:"See the app working from the inside",
+        stat1:"Views",
+        stat2:"Unique visitors",
+        stat3:"Orders",
+        stat4:"Revenue",
+        features_title:"Everything a merchant needs to sell more",
+        features_text:"Your platform already brings together catalog, orders, history, videos, social links, dashboard, and tools to grow your store.",
+        f1t:"Digital catalog", f1d:"Add products, photos, categories, descriptions, and visibility controls.",
+        f2t:"WhatsApp orders", f2d:"Receive orders directly on WhatsApp and track everything in history.",
+        f3t:"Automatic PIX", f3d:"Receive PIX payments and track paid orders more easily.",
+        f4t:"Dashboard and history", f4d:"See views, visitors, orders, revenue, and full history.",
+        f5t:"YouTube and social media", f5d:"Show store videos, Instagram, WhatsApp group, and increase trust.",
+        f6t:"QR Code and PDF", f6d:"Share your store with QR Code and export your catalog as PDF.",
+        f7t:"Sellers", f7d:"Manage sellers, exclusive links, and follow each seller's sales.",
+        f8t:"Affiliate management", f8d:"Create referral systems, codes, and commissions to expand sales.",
+        f9t:"Ad Studio and banners", f9d:"Create ads, promo banners, scripts, and marketing materials.",
+        f10t:"AI credits", f10d:"Use AI resources to create content and improve your store presentation.",
+        f11t:"Invite friends", f11d:"Invite friends, earn credits, and expand your business network.",
+        f12t:"Control panel", f12d:"Track purchases, revenue, statistics, and business performance.",
+        gallery_title:"See real app screens",
+        gallery_text:"Catalog, orders, history, social links, videos, sellers, and affiliates in one place.",
+        g1:"Product catalog",
+        g2:"Categories and showcase",
+        g3:"History and orders",
+        g4:"Store profile and reviews",
+        reviews_title:"Merchants approve Official Catalog",
+        reviews_text:"A platform made to help you sell more and organize your store better.",
+        reviews_sub:"Based on 19.4k reviews",
+        t1:"I managed to organize my products, receive orders on WhatsApp, and sell much more.",
+        t1n:"Women's store",
+        t2:"The dashboard, PIX, and seller system helped my store grow a lot.",
+        t2n:"Wholesale store",
+        t3:"Videos, QR Code, and the store link made my promotion much more professional.",
+        t3n:"Accessories store",
+        price_title:"Simple pricing to get started",
+        price_text:"Try it free for 15 days and then continue with an affordable price for your store.",
+        plan:"PRO Plan",
+        after_trial:"After the free trial",
+        per_month:"per month",
+        free_trial:"15 free days for new merchants",
+        pl1:"Online store with your own link",
+        pl2:"Unlimited products and categories",
+        pl3:"Orders via WhatsApp",
+        pl4:"Dashboard, history, and statistics",
+        pl5:"Sellers, affiliates, and ads",
+        pl6:"PIX, QR Code, PDF, Instagram, and YouTube",
+        price_btn:"Start my free trial",
+        faq_title:"Frequently asked questions",
+        faq_text:"The main answers you need to start your store easily.",
+        q1:"Do I need to install an app?",
+        a1:"You can promote your store online quickly and also use the app features according to your plan.",
+        q2:"Can I receive orders through WhatsApp?",
+        a2:"Yes. Your customers can choose products and send orders directly through WhatsApp.",
+        q3:"Is there a free trial?",
+        a3:"Yes. You get 15 free days to test the main platform features.",
+        q4:"Can I add Instagram and YouTube?",
+        a4:"Yes. You can display Instagram, WhatsApp group, videos, and other social links in your store.",
+        cta_title:"Turn your phone into a complete online store",
+        cta_text:"Create your store, publish products, share with customers, and receive orders easily in one place.",
+        cta_btn1:"Talk on WhatsApp",
+        cta_btn2:"See features",
+        footer:"© Official Catalog - All rights reserved",
+        wa_start:"I want to create my store on Official Catalog",
+        wa_trial:"I want to start my free trial on Official Catalog",
+        wa_chat:"Hello, I want to know more about Official Catalog"
+      }
+    };
+
+    const sliderImages = ["app1.jpg", "app2.jpg", "app3.jpg", "app4.jpg", "app5.jpg", "app6.jpg"];
+    let currentSlide = 0;
+    let sliderInterval = null;
+
+    function startSlider() {
+      const heroImage = document.getElementById("heroSliderImage");
+      if (!heroImage) return;
+
+      if (sliderInterval) clearInterval(sliderInterval);
+
+      sliderInterval = setInterval(() => {
+        heroImage.style.opacity = "0.25";
+
+        setTimeout(() => {
+          currentSlide = (currentSlide + 1) % sliderImages.length;
+          heroImage.src = sliderImages[currentSlide];
+          heroImage.style.opacity = "1";
+        }, 250);
+      }, 3500);
+    }
+
+    function setLang(lang, btn) {
+      document.body.setAttribute("data-lang", lang);
+
+      const htmlLang = lang === "ar" ? "ar" : lang === "en" ? "en" : "pt-BR";
+      document.documentElement.lang = htmlLang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll(".lang-switch button").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      const startText = encodeURIComponent(translations[lang].wa_start);
+      const trialText = encodeURIComponent(translations[lang].wa_trial);
+      const chatText = encodeURIComponent(translations[lang].wa_chat);
+
+      document.getElementById("navStartLink").href = `https://wa.me/5541997962177?text=${startText}`;
+      document.getElementById("heroStartLink").href = `https://wa.me/5541997962177?text=${startText}`;
+      document.getElementById("priceStartLink").href = `https://wa.me/5541997962177?text=${trialText}`;
+      document.getElementById("ctaWhatsappLink").href = `https://wa.me/5541997962177?text=${chatText}`;
+      document.getElementById("floatingWhatsapp").href = `https://wa.me/5541997962177?text=${chatText}`;
+
+      localStorage.setItem("catalog_lang", lang);
+    }
+
+    document.querySelectorAll(".faq-question").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.parentElement.classList.toggle("active");
+      });
+    });
+
+    const counters = document.querySelectorAll(".counter");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = +el.dataset.target;
+          let count = 0;
+          const step = Math.max(1, Math.ceil(target / 60));
+
+          const timer = setInterval(() => {
+            count += step;
+            if (count >= target) {
+              el.textContent = target.toLocaleString();
+              clearInterval(timer);
+            } else {
+              el.textContent = count.toLocaleString();
+            }
+          }, 25);
+
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: .5 });
+
+    counters.forEach(c => observer.observe(c));
+
+    const heroSliderImage = document.getElementById("heroSliderImage");
+    heroSliderImage.onerror = function() {
+      this.src = "app1.jpg";
+    };
+
+    window.addEventListener("load", () => {
+      const savedLang = localStorage.getItem("catalog_lang") || "pt";
+      const button = [...document.querySelectorAll(".lang-switch button")].find(b =>
+        b.textContent.trim().toLowerCase() === savedLang
+      );
+      setLang(savedLang, button || document.querySelector(".lang-switch button"));
+      startSlider();
+    });
+  </script>
 </body>
 </html>
-     
