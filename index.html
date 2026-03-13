@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Catálogo Oficial</title>
   <meta name="description" content="Catálogo Oficial app download page" />
+
+  <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <meta name="theme-color" content="#2563eb" />
+
   <style>
     *{
       box-sizing:border-box;
@@ -111,6 +116,7 @@
       object-fit:cover;
       background:#fff;
       box-shadow:0 8px 20px rgba(0,0,0,.16);
+      flex-shrink:0;
     }
 
     .brand strong{
@@ -279,6 +285,8 @@
       padding:12px;
       box-shadow:0 30px 80px rgba(0,0,0,.28);
       transform:rotate(-2deg);
+      position:relative;
+      overflow:hidden;
     }
 
     .phone::before{
@@ -298,12 +306,29 @@
       background:#fff;
       border-radius:30px;
       overflow:hidden;
+      position:relative;
     }
 
-    .phone-screen img{
+    .phone-slider{
+      position:relative;
       width:100%;
       aspect-ratio:9 / 19.5;
+      overflow:hidden;
+      background:#fff;
+    }
+
+    .phone-slider img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       object-fit:cover;
+      opacity:0;
+      transition:opacity .7s ease-in-out;
+    }
+
+    .phone-slider img.active{
+      opacity:1;
     }
 
     .section{
@@ -588,7 +613,14 @@
           <div class="phone-side">
             <div class="phone">
               <div class="phone-screen">
-                <img src="app1.jpg" alt="App preview">
+                <div class="phone-slider" id="phoneSlider">
+                  <img src="app1.jpg" alt="App preview 1" class="active">
+                  <img src="app2.jpg" alt="App preview 2">
+                  <img src="app3.jpg" alt="App preview 3">
+                  <img src="app4.jpg" alt="App preview 4">
+                  <img src="app5.jpg" alt="App preview 5">
+                  <img src="app6.jpg" alt="App preview 6">
+                </div>
               </div>
             </div>
           </div>
@@ -927,8 +959,19 @@
                (savedLang === 'pt' && t === 'pt-br');
       });
       setLang(savedLang, btn || buttons[0]);
+
+      const sliderImages = document.querySelectorAll('#phoneSlider img');
+      let currentSlide = 0;
+
+      setInterval(() => {
+        sliderImages[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % sliderImages.length;
+        sliderImages[currentSlide].classList.add('active');
+      }, 2200);
     });
   </script>
 
 </body>
 </html>
+
+   
