@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Catálogo Oficial</title>
+  <meta name="description" content="Catálogo Oficial - crie sua loja online, receba pedidos no WhatsApp e baixe o aplicativo APK." />
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -62,6 +64,21 @@
       z-index: 2;
     }
 
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0,0,0,.18);
+      background: #fff;
+    }
+
     .logo {
       font-size: 28px;
       font-weight: 800;
@@ -107,9 +124,16 @@
     }
 
     .btn:hover { transform: translateY(-1px); }
+
     .btn-white { background: #fff; color: #2563eb; }
     .btn-outline { border: 1px solid rgba(255,255,255,.35); color: #fff; }
     .btn-dark { background: #2563eb; color: #fff; }
+    .btn-download { background: #22c55e; color: #fff; }
+    .btn-download-outline {
+      background: #fff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+    }
 
     .hero-grid {
       display: grid;
@@ -254,7 +278,6 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      direction: ltr !important;
       transition: opacity .5s ease;
     }
 
@@ -353,13 +376,9 @@
       margin-bottom: 8px;
     }
 
-    .feature-card p {
-      color: #64748b;
-    }
+    .feature-card p { color: #64748b; }
 
-    .gallery {
-      background: #eef4ff;
-    }
+    .gallery { background: #eef4ff; }
 
     .gallery-grid {
       display: grid;
@@ -509,9 +528,97 @@
       flex-shrink: 0;
     }
 
-    .faq {
-      background: #fff;
+    .download-app {
+      background: linear-gradient(180deg,#f8fbff 0%,#eef4ff 100%);
     }
+
+    .download-box {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 30px;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #dbeafe;
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: 0 18px 46px rgba(15,23,42,.08);
+    }
+
+    .download-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .download-text h2 {
+      font-size: 40px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .download-text p {
+      color: #64748b;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .download-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .download-info span {
+      background: #eff6ff;
+      color: #1e3a8a;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .download-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .download-note {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .download-preview {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      direction: ltr !important;
+    }
+
+    .download-phone {
+      width: 280px;
+      background: #0f172a;
+      padding: 10px;
+      border-radius: 34px;
+      box-shadow: 0 22px 50px rgba(0,0,0,.18);
+      direction: ltr !important;
+    }
+
+    .download-phone img {
+      width: 100%;
+      border-radius: 26px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .faq { background: #fff; }
 
     .faq-list {
       max-width: 860px;
@@ -546,9 +653,7 @@
       display: none;
     }
 
-    .faq-item.active .faq-answer {
-      display: block;
-    }
+    .faq-item.active .faq-answer { display: block; }
 
     .cta {
       background: #0f172a;
@@ -612,15 +717,29 @@
       .features-grid,
       .gallery-grid,
       .testimonials,
-      .cta-grid {
+      .cta-grid,
+      .download-box {
         grid-template-columns: 1fr;
       }
 
       h1 { font-size: 40px; }
-      .section-title h2, .cta h2 { font-size: 30px; }
+      .section-title h2,
+      .cta h2,
+      .download-text h2 { font-size: 30px; }
+
       .price { font-size: 46px; }
       .iphone { width: 290px; }
       .gallery-card img { height: auto; }
+
+      .download-box,
+      .download-text {
+        text-align: center;
+      }
+
+      .download-info,
+      .download-actions {
+        justify-content: center;
+      }
     }
 
     body[data-lang="ar"] {
@@ -632,14 +751,17 @@
     body[data-lang="ar"] .rating-row,
     body[data-lang="ar"] .hero-actions,
     body[data-lang="ar"] .tags,
-    body[data-lang="ar"] .cta-actions {
+    body[data-lang="ar"] .cta-actions,
+    body[data-lang="ar"] .download-actions,
+    body[data-lang="ar"] .download-info {
       direction: rtl;
     }
 
     body[data-lang="ar"] .feature-card,
     body[data-lang="ar"] .testimonial,
     body[data-lang="ar"] .faq-question,
-    body[data-lang="ar"] .pricing-list {
+    body[data-lang="ar"] .pricing-list,
+    body[data-lang="ar"] .download-text {
       text-align: right;
     }
 
@@ -655,7 +777,6 @@
       text-align: center;
     }
 
-    /* مهم جدًا: الهاتف والصور يبقون LTR دائمًا */
     body[data-lang="ar"] .phone-wrap,
     body[data-lang="ar"] .iphone,
     body[data-lang="ar"] .iphone-screen,
@@ -664,6 +785,9 @@
     body[data-lang="ar"] .gallery-grid,
     body[data-lang="ar"] .gallery-card,
     body[data-lang="ar"] .gallery-card img,
+    body[data-lang="ar"] .download-preview,
+    body[data-lang="ar"] .download-phone,
+    body[data-lang="ar"] .download-phone img,
     body[data-lang="en"] .phone-wrap,
     body[data-lang="en"] .iphone,
     body[data-lang="en"] .iphone-screen,
@@ -680,7 +804,10 @@
   <section class="hero">
     <div class="container">
       <div class="nav">
-        <div class="logo" data-i18n="logo">Catálogo Oficial</div>
+        <div class="logo-wrap">
+          <img src="icon.png" alt="Catálogo Oficial" class="logo-icon">
+          <div class="logo" data-i18n="logo">Catálogo Oficial</div>
+        </div>
 
         <div class="nav-right">
           <div class="lang-switch">
@@ -868,6 +995,41 @@
     </div>
   </section>
 
+  <section class="download-app" id="download">
+    <div class="container">
+      <div class="download-box">
+        <div class="download-text">
+          <div class="download-badge" data-i18n="download_badge">APK pronto para baixar</div>
+          <h2 data-i18n="download_title">Baixe o aplicativo e comece a vender pelo celular</h2>
+          <p data-i18n="download_text">
+            Baixe o Catálogo Oficial agora, adicione produtos, compartilhe sua loja e receba pedidos no WhatsApp com facilidade.
+          </p>
+
+          <div class="download-info">
+            <span data-i18n="download_version">Versão: 6.0.0</span>
+            <span data-i18n="download_size">Tamanho: 250 MB</span>
+            <span data-i18n="download_android">Android APK</span>
+          </div>
+
+          <div class="download-actions">
+            <a href="app.apk" class="btn btn-download" download data-i18n="download_btn">⬇ Baixar aplicativo agora</a>
+            <a id="downloadHelpLink" href="https://wa.me/5541997962177" class="btn btn-download-outline" data-i18n="download_help">Ajuda para instalar</a>
+          </div>
+
+          <div class="download-note" data-i18n="download_note">
+            Se a instalação não começar, ative a opção “Instalar apps desconhecidos” nas configurações do celular.
+          </div>
+        </div>
+
+        <div class="download-preview">
+          <div class="download-phone">
+            <img src="app2.jpg" alt="Catálogo Oficial app preview">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="faq">
     <div class="container">
       <div class="section-title">
@@ -904,7 +1066,7 @@
       </div>
       <div class="cta-actions">
         <a id="ctaWhatsappLink" href="https://wa.me/5541997962177" class="btn btn-dark-light" data-i18n="cta_btn1">Falar no WhatsApp</a>
-        <a href="#recursos" class="btn btn-dark-outline" data-i18n="cta_btn2">Ver recursos</a>
+        <a href="#download" class="btn btn-dark-outline" data-i18n="cta_btn2">Ver recursos</a>
       </div>
     </div>
   </section>
@@ -979,6 +1141,15 @@
         pl5:"Vendedores, afiliados e anúncios",
         pl6:"PIX, QR Code, PDF, Instagram e YouTube",
         price_btn:"Começar meu teste grátis",
+        download_badge:"APK pronto para baixar",
+        download_title:"Baixe o aplicativo e comece a vender pelo celular",
+        download_text:"Baixe o Catálogo Oficial agora, adicione produtos, compartilhe sua loja e receba pedidos no WhatsApp com facilidade.",
+        download_version:"Versão: 6.0.0",
+        download_size:"Tamanho: 250 MB",
+        download_android:"Android APK",
+        download_btn:"⬇ Baixar aplicativo agora",
+        download_help:"Ajuda para instalar",
+        download_note:"Se a instalação não começar, ative a opção “Instalar apps desconhecidos” nas configurações do celular.",
         faq_title:"Perguntas frequentes",
         faq_text:"As respostas principais para começar sua loja sem complicação.",
         q1:"Preciso instalar aplicativo?",
@@ -992,11 +1163,12 @@
         cta_title:"Transforme seu celular em uma loja online completa",
         cta_text:"Crie sua loja, publique produtos, compartilhe com clientes e receba pedidos de forma prática em um único lugar.",
         cta_btn1:"Falar no WhatsApp",
-        cta_btn2:"Ver recursos",
+        cta_btn2:"Baixar app",
         footer:"© Catálogo Oficial - Todos os direitos reservados",
         wa_start:"Quero criar minha loja no Catálogo Oficial",
         wa_trial:"Quero começar meu teste grátis no Catálogo Oficial",
-        wa_chat:"Olá, quero saber mais sobre o Catálogo Oficial"
+        wa_chat:"Olá, quero saber mais sobre o Catálogo Oficial",
+        wa_help:"Olá, preciso de ajuda para instalar o aplicativo Catálogo Oficial"
       },
 
       ar: {
@@ -1063,6 +1235,15 @@
         pl5:"بائعون وأفلييت وإعلانات",
         pl6:"PIX و QR Code و PDF و Instagram و YouTube",
         price_btn:"ابدأ تجربتي المجانية",
+        download_badge:"APK جاهز للتحميل",
+        download_title:"حمّل التطبيق وابدأ البيع من هاتفك",
+        download_text:"نزّل تطبيق كاتالوج أوفيشيال الآن، أضف منتجاتك، شارك متجرك، واستقبل الطلبات عبر واتساب بسهولة.",
+        download_version:"الإصدار: 6.0.0",
+        download_size:"الحجم: 250 MB",
+        download_android:"Android APK",
+        download_btn:"⬇ تحميل التطبيق الآن",
+        download_help:"مساعدة في التثبيت",
+        download_note:"إذا لم يبدأ التثبيت، فعّل خيار Install unknown apps من إعدادات الهاتف.",
         faq_title:"الأسئلة الشائعة",
         faq_text:"أهم الإجابات التي تحتاجها للبدء بسهولة.",
         q1:"هل أحتاج إلى تثبيت تطبيق؟",
@@ -1076,11 +1257,12 @@
         cta_title:"حوّل هاتفك إلى متجر إلكتروني كامل",
         cta_text:"أنشئ متجرك، أضف منتجاتك، شاركها مع العملاء واستقبل الطلبات بسهولة من مكان واحد.",
         cta_btn1:"تحدث على واتساب",
-        cta_btn2:"شاهد المميزات",
+        cta_btn2:"تحميل التطبيق",
         footer:"© كاتالوج أوفيشيال - جميع الحقوق محفوظة",
         wa_start:"أريد إنشاء متجري في كاتالوج أوفيشيال",
         wa_trial:"أريد بدء التجربة المجانية في كاتالوج أوفيشيال",
-        wa_chat:"مرحبًا، أريد معرفة المزيد عن كاتالوج أوفيشيال"
+        wa_chat:"مرحبًا، أريد معرفة المزيد عن كاتالوج أوفيشيال",
+        wa_help:"مرحبًا، أحتاج مساعدة في تثبيت تطبيق كاتالوج أوفيشيال"
       },
 
       en: {
@@ -1147,6 +1329,15 @@
         pl5:"Sellers, affiliates, and ads",
         pl6:"PIX, QR Code, PDF, Instagram, and YouTube",
         price_btn:"Start my free trial",
+        download_badge:"APK ready to download",
+        download_title:"Download the app and start selling from your phone",
+        download_text:"Download Official Catalog now, add your products, share your store, and receive WhatsApp orders easily.",
+        download_version:"Version: 6.0.0",
+        download_size:"Size: 250 MB",
+        download_android:"Android APK",
+        download_btn:"⬇ Download app now",
+        download_help:"Installation help",
+        download_note:"If installation does not start, enable Install unknown apps in your phone settings.",
         faq_title:"Frequently asked questions",
         faq_text:"The main answers you need to start your store easily.",
         q1:"Do I need to install an app?",
@@ -1160,11 +1351,12 @@
         cta_title:"Turn your phone into a complete online store",
         cta_text:"Create your store, publish products, share with customers, and receive orders easily in one place.",
         cta_btn1:"Talk on WhatsApp",
-        cta_btn2:"See features",
+        cta_btn2:"Download app",
         footer:"© Official Catalog - All rights reserved",
         wa_start:"I want to create my store on Official Catalog",
         wa_trial:"I want to start my free trial on Official Catalog",
-        wa_chat:"Hello, I want to know more about Official Catalog"
+        wa_chat:"Hello, I want to know more about Official Catalog",
+        wa_help:"Hello, I need help installing the Official Catalog app"
       }
     };
 
@@ -1180,7 +1372,6 @@
 
       sliderInterval = setInterval(() => {
         heroImage.style.opacity = "0.25";
-
         setTimeout(() => {
           currentSlide = (currentSlide + 1) % sliderImages.length;
           heroImage.src = sliderImages[currentSlide];
@@ -1191,9 +1382,7 @@
 
     function setLang(lang, btn) {
       document.body.setAttribute("data-lang", lang);
-
-      const htmlLang = lang === "ar" ? "ar" : lang === "en" ? "en" : "pt-BR";
-      document.documentElement.lang = htmlLang;
+      document.documentElement.lang = lang === "ar" ? "ar" : lang === "en" ? "en" : "pt-BR";
       document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
       document.querySelectorAll(".lang-switch button").forEach(b => b.classList.remove("active"));
@@ -1209,12 +1398,14 @@
       const startText = encodeURIComponent(translations[lang].wa_start);
       const trialText = encodeURIComponent(translations[lang].wa_trial);
       const chatText = encodeURIComponent(translations[lang].wa_chat);
+      const helpText = encodeURIComponent(translations[lang].wa_help);
 
       document.getElementById("navStartLink").href = `https://wa.me/5541997962177?text=${startText}`;
       document.getElementById("heroStartLink").href = `https://wa.me/5541997962177?text=${startText}`;
       document.getElementById("priceStartLink").href = `https://wa.me/5541997962177?text=${trialText}`;
       document.getElementById("ctaWhatsappLink").href = `https://wa.me/5541997962177?text=${chatText}`;
       document.getElementById("floatingWhatsapp").href = `https://wa.me/5541997962177?text=${chatText}`;
+      document.getElementById("downloadHelpLink").href = `https://wa.me/5541997962177?text=${helpText}`;
 
       localStorage.setItem("catalog_lang", lang);
     }
@@ -1258,10 +1449,9 @@
 
     window.addEventListener("load", () => {
       const savedLang = localStorage.getItem("catalog_lang") || "pt";
-      const button = [...document.querySelectorAll(".lang-switch button")].find(b =>
-        b.textContent.trim().toLowerCase() === savedLang
-      );
-      setLang(savedLang, button || document.querySelector(".lang-switch button"));
+      const buttons = [...document.querySelectorAll(".lang-switch button")];
+      const button = buttons.find(b => b.textContent.trim().toLowerCase() === savedLang) || buttons[0];
+      setLang(savedLang, button);
       startSlider();
     });
   </script>
