@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="pt-BR" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Catálogo Oficial</title>
   <meta name="description" content="Catálogo Oficial app download page" />
 
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/png" href="icon.png" />
-  <link rel="apple-touch-icon" href="icon.png" />
-  <meta name="theme-color" content="#2563eb" />
+  <!-- Favicon -->
+  <link rel="icon" href="icon.png" type="image/png" sizes="32x32">
+  <link rel="shortcut icon" href="icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon.png">
 
   <style>
     *{
@@ -116,7 +116,6 @@
       object-fit:cover;
       background:#fff;
       box-shadow:0 8px 20px rgba(0,0,0,.16);
-      flex-shrink:0;
     }
 
     .brand strong{
@@ -285,8 +284,6 @@
       padding:12px;
       box-shadow:0 30px 80px rgba(0,0,0,.28);
       transform:rotate(-2deg);
-      position:relative;
-      overflow:hidden;
     }
 
     .phone::before{
@@ -306,29 +303,12 @@
       background:#fff;
       border-radius:30px;
       overflow:hidden;
-      position:relative;
     }
 
-    .phone-slider{
-      position:relative;
+    .phone-screen img{
       width:100%;
       aspect-ratio:9 / 19.5;
-      overflow:hidden;
-      background:#fff;
-    }
-
-    .phone-slider img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
       object-fit:cover;
-      opacity:0;
-      transition:opacity .7s ease-in-out;
-    }
-
-    .phone-slider img.active{
-      opacity:1;
     }
 
     .section{
@@ -554,14 +534,14 @@
           <img src="icon.png" alt="Catálogo Oficial">
           <div>
             <strong data-i18n="brand_name">Catálogo Oficial</strong>
-            <span data-i18n="brand_sub">Android APK • WhatsApp Store</span>
+            <span data-i18n="brand_sub">Android APK • Loja no WhatsApp</span>
           </div>
         </div>
 
         <div class="lang-switch">
-          <button class="active" type="button" onclick="setLang('ar', this)">AR</button>
+          <button type="button" onclick="setLang('ar', this)">AR</button>
           <button type="button" onclick="setLang('en', this)">EN</button>
-          <button type="button" onclick="setLang('pt', this)">PT-BR</button>
+          <button class="active" type="button" onclick="setLang('pt', this)">PT-BR</button>
         </div>
       </div>
 
@@ -575,16 +555,16 @@
               <div class="app-meta">
                 <h1 data-i18n="title">Catálogo Oficial</h1>
                 <p data-i18n="subtitle">
-                  أنشئ متجرك الإلكتروني، أضف منتجاتك، وابدأ استقبال الطلبات عبر واتساب بسهولة مع واجهة حديثة ومميزات تساعدك على البيع أكثر.
+                  Crie sua loja online, adicione seus produtos e comece a receber pedidos no WhatsApp com uma interface moderna e recursos poderosos para vender mais.
                 </p>
 
                 <div class="hero-actions">
                   <a class="btn btn-download" href="https://drive.google.com/uc?export=download&id=1Br-QFCup-4-AQe1fxEtyUCNOVWHgb0Tz" target="_blank" data-i18n="download_top">
-                    ⬇ تحميل التطبيق
+                    ⬇ Baixar aplicativo
                   </a>
 
                   <a class="btn btn-outline" href="#screens" data-i18n="view_screens">
-                    مشاهدة الصور
+                    Ver imagens
                   </a>
                 </div>
               </div>
@@ -593,15 +573,15 @@
             <div class="stats">
               <div class="stat">
                 <strong>4.8</strong>
-                <span data-i18n="stat_rating">التقييم</span>
+                <span data-i18n="stat_rating">Avaliação</span>
               </div>
               <div class="stat">
                 <strong>250MB</strong>
-                <span data-i18n="stat_size">الحجم</span>
+                <span data-i18n="stat_size">Tamanho</span>
               </div>
               <div class="stat">
                 <strong>6.0.0</strong>
-                <span data-i18n="stat_version">الإصدار</span>
+                <span data-i18n="stat_version">Versão</span>
               </div>
               <div class="stat">
                 <strong>APK</strong>
@@ -613,14 +593,7 @@
           <div class="phone-side">
             <div class="phone">
               <div class="phone-screen">
-                <div class="phone-slider" id="phoneSlider">
-                  <img src="app1.jpg" alt="App preview 1" class="active">
-                  <img src="app2.jpg" alt="App preview 2">
-                  <img src="app3.jpg" alt="App preview 3">
-                  <img src="app4.jpg" alt="App preview 4">
-                  <img src="app5.jpg" alt="App preview 5">
-                  <img src="app6.jpg" alt="App preview 6">
-                </div>
+                <img src="app1.jpg" alt="App preview">
               </div>
             </div>
           </div>
@@ -634,26 +607,26 @@
   <section class="section" id="screens">
     <div class="container">
       <div class="section-title">
-        <h2 data-i18n="screens_title">صور من داخل التطبيق</h2>
-        <p data-i18n="screens_text">شاهد الواجهة الحقيقية للتطبيق قبل التحميل</p>
+        <h2 data-i18n="screens_title">Telas do aplicativo</h2>
+        <p data-i18n="screens_text">Veja a interface real do app antes de baixar</p>
       </div>
 
       <div class="gallery">
         <div class="gallery-card">
           <img src="app1.jpg" alt="screen 1">
-          <p data-i18n="screen1">واجهة التطبيق</p>
+          <p data-i18n="screen1">Tela inicial</p>
         </div>
         <div class="gallery-card">
           <img src="app2.jpg" alt="screen 2">
-          <p data-i18n="screen2">المنتجات</p>
+          <p data-i18n="screen2">Produtos</p>
         </div>
         <div class="gallery-card">
           <img src="app3.jpg" alt="screen 3">
-          <p data-i18n="screen3">التصنيفات</p>
+          <p data-i18n="screen3">Categorias</p>
         </div>
         <div class="gallery-card">
           <img src="app4.jpg" alt="screen 4">
-          <p data-i18n="screen4">المتجر</p>
+          <p data-i18n="screen4">Loja</p>
         </div>
       </div>
     </div>
@@ -662,67 +635,67 @@
   <section class="section">
     <div class="container">
       <div class="section-title">
-        <h2 data-i18n="why_title">لماذا تختار Catálogo Oficial؟</h2>
-        <p data-i18n="why_text">أدوات جاهزة تساعدك على عرض منتجاتك واستقبال الطلبات بسرعة</p>
+        <h2 data-i18n="why_title">Por que escolher o Catálogo Oficial?</h2>
+        <p data-i18n="why_text">Ferramentas poderosas para mostrar seus produtos e receber pedidos mais rápido</p>
       </div>
 
       <div class="features">
         <div class="feature">
           <div class="feature-icon">🛍</div>
-          <h3 data-i18n="f1t">متجر إلكتروني</h3>
-          <p data-i18n="f1d">أنشئ كتالوج منتجات احترافي وشاركه بسهولة مع الزبائن.</p>
+          <h3 data-i18n="f1t">Loja online</h3>
+          <p data-i18n="f1d">Crie um catálogo profissional e compartilhe facilmente com seus clientes.</p>
         </div>
 
         <div class="feature">
           <div class="feature-icon">💬</div>
-          <h3 data-i18n="f2t">طلبات عبر واتساب</h3>
-          <p data-i18n="f2d">استقبل الطلبات مباشرة وواصل مع العملاء بسرعة ومرونة.</p>
+          <h3 data-i18n="f2t">Pedidos no WhatsApp</h3>
+          <p data-i18n="f2d">Receba pedidos diretamente e fale com os clientes com rapidez.</p>
         </div>
 
         <div class="feature">
           <div class="feature-icon">⚡</div>
-          <h3 data-i18n="f3t">دفع PIX</h3>
-          <p data-i18n="f3d">سهّل على الزبائن الدفع بطريقة سريعة وواضحة داخل التجربة.</p>
+          <h3 data-i18n="f3t">Pagamento PIX</h3>
+          <p data-i18n="f3d">Facilite o pagamento dos clientes de forma rápida e simples.</p>
         </div>
       </div>
 
       <div class="features" style="margin-top:20px;">
         <div class="feature">
           <div class="feature-icon">🎥</div>
-          <h3 data-i18n="f4t">روابط YouTube</h3>
-          <p data-i18n="f4d">أضف فيديوهات يوتيوب لشرح المنتجات وزيادة ثقة الزبون.</p>
+          <h3 data-i18n="f4t">Links do YouTube</h3>
+          <p data-i18n="f4d">Adicione vídeos do YouTube para explicar produtos e aumentar a confiança.</p>
         </div>
 
         <div class="feature">
           <div class="feature-icon">🤖</div>
-          <h3 data-i18n="f5t">الذكاء الاصطناعي</h3>
-          <p data-i18n="f5d">استعمل الذكاء الاصطناعي لكتابة وصف المنتجات وتحسين عرض المتجر.</p>
+          <h3 data-i18n="f5t">Inteligência artificial</h3>
+          <p data-i18n="f5d">Use IA para criar descrições de produtos e melhorar a apresentação da loja.</p>
         </div>
 
         <div class="feature">
           <div class="feature-icon">🖼</div>
-          <h3 data-i18n="f6t">تعديل الصور</h3>
-          <p data-i18n="f6d">عدّل صور المنتجات بسهولة لتحسين شكلها داخل المتجر.</p>
+          <h3 data-i18n="f6t">Edição de fotos</h3>
+          <p data-i18n="f6d">Edite fotos dos produtos facilmente para melhorar o visual da loja.</p>
         </div>
       </div>
 
       <div class="features" style="margin-top:20px;">
         <div class="feature">
           <div class="feature-icon">👥</div>
-          <h3 data-i18n="f7t">حتى 5 بائعين</h3>
-          <p data-i18n="f7d">أضف حتى 5 بائعين داخل نفس المتجر، وكل بائع له هاتفه ورابطه الخاص.</p>
+          <h3 data-i18n="f7t">Até 5 vendedores</h3>
+          <p data-i18n="f7d">Adicione até 5 vendedores na mesma loja, cada um com seu telefone e link próprio.</p>
         </div>
 
         <div class="feature">
           <div class="feature-icon">🔗</div>
-          <h3 data-i18n="f8t">رابط خاص لكل بائع</h3>
-          <p data-i18n="f8d">كل بائع يحصل على رابط خاص لمشاركة منتجاته واستقبال طلباته.</p>
+          <h3 data-i18n="f8t">Link próprio para cada vendedor</h3>
+          <p data-i18n="f8d">Cada vendedor recebe um link exclusivo para compartilhar produtos e receber pedidos.</p>
         </div>
 
         <div class="feature">
           <div class="feature-icon">💸</div>
-          <h3 data-i18n="f9t">نظام عمولة</h3>
-          <p data-i18n="f9d">حدّد عمولة خاصة لكل بائع وتابع الأداء من داخل التطبيق.</p>
+          <h3 data-i18n="f9t">Sistema de comissão</h3>
+          <p data-i18n="f9d">Defina uma comissão personalizada para cada vendedor e acompanhe o desempenho no app.</p>
         </div>
       </div>
 
@@ -730,43 +703,43 @@
         <div class="review-box">
           <div class="rating-big">4.8</div>
           <div class="stars">★★★★★</div>
-          <p class="muted" data-i18n="rating_text">تقييم ممتاز من المستخدمين وتجربة سهلة للتجار.</p>
+          <p class="muted" data-i18n="rating_text">Excelente avaliação dos usuários e uma experiência fácil para lojistas.</p>
 
           <div class="review-quote">
-            <p data-i18n="quote">“التطبيق ساعدني أعرض المنتجات بشكل جميل وأستقبل الطلبات بسهولة.”</p>
-            <strong data-i18n="quote_author">— صاحب متجر</strong>
+            <p data-i18n="quote">“O aplicativo me ajudou a mostrar os produtos de forma bonita e receber pedidos com facilidade.”</p>
+            <strong data-i18n="quote_author">— Dono de loja</strong>
           </div>
         </div>
 
         <div class="review-box">
-          <h3 style="margin-bottom:12px;" data-i18n="info_title">معلومات التطبيق</h3>
-          <p class="muted" style="margin-bottom:10px;" data-i18n="info_name">الاسم: Catálogo Oficial</p>
-          <p class="muted" style="margin-bottom:10px;" data-i18n="info_platform">المنصة: Android APK</p>
-          <p class="muted" style="margin-bottom:10px;" data-i18n="info_size">الحجم: 250MB</p>
-          <p class="muted" style="margin-bottom:10px;" data-i18n="info_category">الفئة: متجر إلكتروني وطلبات واتساب</p>
-          <p class="muted" data-i18n="info_multi">يدعم عدة بائعين وعمولات وروابط خاصة وإدارة متكاملة.</p>
+          <h3 style="margin-bottom:12px;" data-i18n="info_title">Informações do aplicativo</h3>
+          <p class="muted" style="margin-bottom:10px;" data-i18n="info_name">Nome: Catálogo Oficial</p>
+          <p class="muted" style="margin-bottom:10px;" data-i18n="info_platform">Plataforma: Android APK</p>
+          <p class="muted" style="margin-bottom:10px;" data-i18n="info_size">Tamanho: 250MB</p>
+          <p class="muted" style="margin-bottom:10px;" data-i18n="info_category">Categoria: Loja online e pedidos no WhatsApp</p>
+          <p class="muted" data-i18n="info_multi">Suporta vários vendedores, comissões, links próprios e gestão completa.</p>
         </div>
       </div>
 
       <div class="bottom-box">
-        <h2 data-i18n="bottom_title">ابدأ الآن</h2>
+        <h2 data-i18n="bottom_title">Comece agora</h2>
         <p data-i18n="bottom_text">
-          حمّل التطبيق الآن وابدأ في عرض منتجاتك، مشاركة متجرك، وإدارة البائعين والعمولات والطلبات بطريقة سهلة واحترافية.
+          Baixe o aplicativo agora e comece a mostrar seus produtos, compartilhar sua loja e gerenciar vendedores, comissões e pedidos de forma simples e profissional.
         </p>
 
         <div class="footer-actions">
           <a class="btn btn-download" href="https://drive.google.com/uc?export=download&id=1Br-QFCup-4-AQe1fxEtyUCNOVWHgb0Tz" target="_blank" data-i18n="download_bottom">
-            ⬇ تحميل التطبيق الآن
+            ⬇ Baixar aplicativo agora
           </a>
 
           <a class="btn btn-outline" href="#screens" data-i18n="view_screens_bottom">
-            عرض صور التطبيق
+            Ver telas do app
           </a>
         </div>
       </div>
 
       <div class="footer-note" data-i18n="footer_note">
-        إذا لم يبدأ التحميل مباشرة، افتح الرابط في نافذة جديدة ثم حمّل التطبيق من Google Drive.
+        Se o download não iniciar direto, abra o link em uma nova aba e baixe o aplicativo pelo Google Drive.
       </div>
     </div>
   </section>
@@ -950,7 +923,7 @@
     }
 
     window.addEventListener('load', () => {
-      const savedLang = localStorage.getItem('catalog_lang') || 'ar';
+      const savedLang = localStorage.getItem('catalog_lang') || 'pt';
       const buttons = [...document.querySelectorAll('.lang-switch button')];
       const btn = buttons.find(b => {
         const t = b.textContent.trim().toLowerCase();
@@ -958,20 +931,9 @@
                (savedLang === 'en' && t === 'en') ||
                (savedLang === 'pt' && t === 'pt-br');
       });
-      setLang(savedLang, btn || buttons[0]);
-
-      const sliderImages = document.querySelectorAll('#phoneSlider img');
-      let currentSlide = 0;
-
-      setInterval(() => {
-        sliderImages[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % sliderImages.length;
-        sliderImages[currentSlide].classList.add('active');
-      }, 2200);
+      setLang(savedLang, btn || buttons[2]);
     });
   </script>
 
 </body>
 </html>
-
-   
